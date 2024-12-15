@@ -9,8 +9,7 @@
 
 #define BUFFER_SIZE 1024
 
-void* handleConnection(void* client_fd_ptr)
-{
+void* handleConnection(void* client_fd_ptr) {
     int client_fd = *(int*)client_fd_ptr;
     free(client_fd_ptr);
 
@@ -27,8 +26,7 @@ void* handleConnection(void* client_fd_ptr)
     return NULL;
 }
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
     if (argc != 3 || strcmp(argv[1], "-p") != 0) {
         fprintf(stderr, "Usage: %s -p <port>\n", argv[0]);
         exit(EXIT_FAILURE);
@@ -49,7 +47,7 @@ int main(int argc, char* argv[])
     server_address.sin_addr.s_addr = INADDR_ANY;
     server_address.sin_port = htons(port);
 
-    if (bind(socket_fd, (struct sockaddr*)&server_address, sizeof(server_address)) < 0) {
+    if (bind(socket_fd, (struct sockaddr *)&server_address, sizeof(server_address)) < 0) {
         perror("bind failed");
         close(socket_fd);
         exit(EXIT_FAILURE);
