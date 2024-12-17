@@ -17,8 +17,8 @@ void* handleConnection(void* client_fd_ptr) {
     ssize_t bytes_read;
 
     while ((bytes_read = read(client_fd, buffer, sizeof(buffer) - 1)) > 0) {
-        printf("Received: %s", buffer);
         buffer[bytes_read] = '\0';
+        printf("Received: %s", buffer);
         write(client_fd, buffer, bytes_read);
     }
 
